@@ -1,0 +1,50 @@
+name: Merge develop into components
+on: 
+  schedule:
+    - cron:  '0 13 * * 5'
+  workflow_dispatch:
+
+jobs:
+  merge_develop_club_integrations:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sends a Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: merge-develop-test
+        SLACK_WEBHOOK: https://hooks.slack.com/services/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
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_TITLE: Post Title
+        SLACK_USERNAME: rtCamp
+#   merge_develop_club:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_usga_associations:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_golf_canada:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_gg_associations:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_international:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_pga_pro:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_usability:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#   merge_develop_internal:
+#     runs-on: ubuntu-latest
+#     steps:
