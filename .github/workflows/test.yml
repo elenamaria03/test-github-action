@@ -28,7 +28,7 @@ jobs:
         SLACK_CHANNEL: merge-develop-test
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Action failed when merging develop into feature/develop_club_integrations :alert:. <@U01R5DNGLS1>, please check if the base exists or there are conflicts that need to be resolved manually. Find the action logs at <https://github.com/elenamaria03/test-github-action/actions/workflows/test.yml | Action logs> '
+        SLACK_MESSAGE: 'Action failed when merging `develop` into `feature/develop_club_integrations` :alert:. <@U01R5DNGLS1>, please check if the base exists or there are conflicts that need to be resolved manually. Find the action logs at <https://github.com/elenamaria03/test-github-action/actions/workflows/test.yml | Action logs> '
         SLACK_ICON: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
         SLACK_TITLE: Message
         SLACK_USERNAME: Golf Genius
