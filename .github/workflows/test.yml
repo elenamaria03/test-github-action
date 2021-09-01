@@ -18,7 +18,7 @@ jobs:
       with:
         github_token: ${{ github.token }}
         source_ref: 'branch1'
-        target_branch: 'branch3'
+        target_branch: 'branch2'
         commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
         
     - name: Sends a Slack Notification
@@ -28,7 +28,7 @@ jobs:
         SLACK_CHANNEL: merge-develop-test
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_LINK_NAMES: true
-        SLACK_MESSAGE:  ${{join(steps.step1.outputs.*, '\n')}}
+        SLACK_MESSAGE: 'Merging failed :rocket: <@U01R5DNGLS1>'
         SLACK_ICON_LINK: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
         SLACK_TITLE: Message
         SLACK_USERNAME: Golf Genius
