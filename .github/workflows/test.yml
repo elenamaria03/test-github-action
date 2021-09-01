@@ -28,7 +28,7 @@ jobs:
         SLACK_CHANNEL: merge-develop-test
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Merging failed :rocket: <@U01R5DNGLS1> ${{steps.step1.outputs}}'
+        SLACK_MESSAGE:  ${{join(steps.step1.outputs.*, '\n')}}
         SLACK_ICON_LINK: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
         SLACK_TITLE: Message
         SLACK_USERNAME: Golf Genius
