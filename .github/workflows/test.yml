@@ -28,13 +28,10 @@ jobs:
         SLACK_CHANNEL: merge-develop-test
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Merging failed :rocket: <@U01R5DNGLS1>'
-        SLACK_ICON_LINK: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
+        SLACK_MESSAGE: 'Action failed when merging develop into feature/develop_club_integrations :alert: \n <@U01R5DNGLS1>, please check if the base exits or there are conflicts that need manual solving. \n Find the action logs at <https://github.com/elenamaria03/test-github-action/actions | Action logs> '
+        SLACK_ICON: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
         SLACK_TITLE: Message
         SLACK_USERNAME: Golf Genius
-    - name: Check status
-      if: ${{ failure() }}
-      run: ${{ toJson(steps.step1) }}
       
 #   merge_develop_club:
 #     runs-on: ubuntu-latest
