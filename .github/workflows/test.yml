@@ -9,13 +9,24 @@ jobs:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@main
+
+    - name: Merge branch1 -> branch3
+      uses: devmasx/merge-branch@v1.4.0
+      with:
+        type: now
+        from_branch: branch1
+        target_branch: branch3
+        github_token: ${{ github.token }}
+        
     - name: Sends a Slack Notification
+      if: ${{ failure() }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_CHANNEL: merge-develop-test
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Post Content :rocket: <@U01R5DNGLS1>'
+        SLACK_MESSAGE: 'Merging failed :rocket: <@U01R5DNGLS1>'
         SLACK_ICON: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
         SLACK_TITLE: Message
         SLACK_USERNAME: Golf Genius
