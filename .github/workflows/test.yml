@@ -9,7 +9,7 @@ jobs:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v2
 
     - name: Merge branch1 -> branch3
       uses: devmasx/merge-branch@v1.4.0
