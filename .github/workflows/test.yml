@@ -13,7 +13,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_CHANNEL: merge-develop-test
-        SLACK_WEBHOOK: https://hooks.slack.com/services/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
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: 'Post Content :rocket:'
         SLACK_TITLE: Post Title
         SLACK_USERNAME: rtCamp
