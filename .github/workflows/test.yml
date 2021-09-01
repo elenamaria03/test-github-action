@@ -32,6 +32,9 @@ jobs:
         SLACK_ICON_LINK: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
         SLACK_TITLE: Message
         SLACK_USERNAME: Golf Genius
+    - name: Check status
+      run: ${{ toJson(steps.step1) }}
+      
 #   merge_develop_club:
 #     runs-on: ubuntu-latest
 #     steps:
