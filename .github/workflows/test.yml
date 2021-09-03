@@ -18,7 +18,7 @@ jobs:
       with:
         github_token: ${{ github.token }}
         source_ref: 'branch1'
-        target_branch: 'alexander34ro/test-github-action:patch-1'
+        target_branch: 'branch2'
         commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
         
     - name: Sends a Slack Notification
