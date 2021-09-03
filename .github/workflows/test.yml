@@ -11,14 +11,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Merge branch1 -> branch3
+    - name: Merge branch1 -> alexander34ro:patch-1
       id: step1
       uses: everlytic/branch-merge@1.1.2
       
       with:
         github_token: ${{ github.token }}
         source_ref: 'branch1'
-        target_branch: 'branch3'
+        target_branch: 'alexander34ro:patch-1'
         commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
         
     - name: Sends a Slack Notification
