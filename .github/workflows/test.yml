@@ -10,7 +10,7 @@ jobs:
     - name: Test if branch exists
       uses: actions/checkout@v2
       with:
-        ref: test
+        ref: branch2
   test_branch_merge:
     needs: test_branch_exists
     name: Test branch merge
