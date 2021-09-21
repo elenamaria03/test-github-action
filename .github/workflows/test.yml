@@ -3,32 +3,44 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_branch_exists:
-    name: Test branch exist
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-    - name: Test if branch exists
-      uses: actions/checkout@v2
-      with:
-        ref: branch2
-  test_branch_merge:
-    needs: test_branch_exists
-    name: Test branch merge
-    runs-on: ubuntu-latest
-    steps:
-    - name: Merge branch1 -> branch2
-      uses: everlytic/branch-merge@1.1.2
-      with:
-        github_token: ${{ github.token }}
-        source_ref: 'branch1'
-        target_branch: 'branch2'
-        commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+      - uses: actions/checkout@v2
+      - id: foo
+        uses: actions/hello-world-composite-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+    
+#   test_branch_exists:
+#     name: Test branch exist
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Test if branch exists
+#       uses: actions/checkout@v2
+#       with:
+#         ref: branch2
+#   test_branch_merge:
+#     needs: test_branch_exists
+#     name: Test branch merge
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Merge branch1 -> branch2
+#       uses: everlytic/branch-merge@1.1.2
+#       with:
+#         github_token: ${{ github.token }}
+#         source_ref: 'branch1'
+#         target_branch: 'branch2'
+#         commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
         
-    - name: Sends a Slack Notification
-      if: ${{ failure() }}
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: merge-develop-bot
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Disregard this message. This is a test!'
+#     - name: Sends a Slack Notification
+#       if: ${{ failure() }}
+#       uses: rtCamp/action-slack-notify@v2
+#       env:
+#         SLACK_CHANNEL: merge-develop-bot
+#         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#         SLACK_LINK_NAMES: true
+#         SLACK_MESSAGE: 'Disregard this message. This is a test!'
