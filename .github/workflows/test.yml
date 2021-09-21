@@ -10,7 +10,7 @@ jobs:
     - name: Test if branch exists
       uses: actions/checkout@v2
       with:
-        ref: test
+        ref: branch2
 
 #     - name: Merge branch1 -> branch2
 #       id: step1
