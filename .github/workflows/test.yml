@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  merge_develop_test:
-    name: Merge develop into feature/develop
+  test_branch_exists:
+    name: Test branch exist
     runs-on: ubuntu-latest
     steps:
     - name: Test if branch exists
@@ -18,10 +18,12 @@ jobs:
         repo: octocat/hello-world
         workflow_id: ${{ github.run_id }}
         access_token: ${{ github.token }}
-
+  test_branch_merge:
+    name: Merge develop into feature/develop
+    runs-on: ubuntu-latest
+    steps:
     - name: Merge branch1 -> branch2
       uses: everlytic/branch-merge@1.1.2
-      
       with:
         github_token: ${{ github.token }}
         source_ref: 'branch1'
