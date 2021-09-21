@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_branch_exists:
+  test_branch_merge:
     name: Test branch exist
     runs-on: ubuntu-latest
     steps:
@@ -18,10 +18,6 @@ jobs:
         repo: octocat/hello-world
         workflow_id: ${{ github.run_id }}
         access_token: ${{ github.token }}
-  test_branch_merge:
-    name: Merge develop into feature/develop
-    runs-on: ubuntu-latest
-    steps:
     - name: Merge branch1 -> branch2
       uses: everlytic/branch-merge@1.1.2
       with:
@@ -30,11 +26,11 @@ jobs:
         target_branch: 'branch1'
         commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
         
-    - name: Sends a Slack Notification
-      if: ${{ failure() }}
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: merge-develop-bot
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Disregard this message. This is a test!'
+#     - name: Sends a Slack Notification
+#       if: ${{ failure() }}
+#       uses: rtCamp/action-slack-notify@v2
+#       env:
+#         SLACK_CHANNEL: merge-develop-bot
+#         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#         SLACK_LINK_NAMES: true
+#         SLACK_MESSAGE: 'Disregard this message. This is a test!'
