@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: elenamaria03/test-github-action@v1
+        uses: elenamaria03/test-github-action@v2
         with:
           who-to-greet: 'Outis'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
