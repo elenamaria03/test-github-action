@@ -20,6 +20,7 @@ jobs:
         access_token: ${{ github.token }}
     - name: Merge branch1 -> branch2
       uses: everlytic/branch-merge@1.1.2
+      if: ${{ failure() }}
       with:
         github_token: ${{ github.token }}
         source_ref: 'branch1'
