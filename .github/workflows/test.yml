@@ -1,66 +1,32 @@
 name: Merge develop into components
 on: 
-  schedule:
-    - cron:  '0 13 * * 5'
   workflow_dispatch:
 
 jobs:
-  merge_develop_club_integrations:
-    name: Merge develop into feature/develop_club_integrations
+  merge_develop_test:
+    name: Merge develop into feature/develop
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Test if branch exists
+      run: |
+          git rev-parse --verify test
 
-    - name: Merge branch1 -> alexander34ro:patch-1
-      id: step1
-      uses: everlytic/branch-merge@1.1.2
+#     - name: Merge branch1 -> branch2
+#       id: step1
+#       uses: everlytic/branch-merge@1.1.2
       
-      with:
-        github_token: ${{ github.token }}
-        source_ref: 'branch1'
-        target_branch: 'branch2'
-        commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+#       with:
+#         github_token: ${{ github.token }}
+#         source_ref: 'branch1'
+#         target_branch: 'branch2'
+#         commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
         
-    - name: Sends a Slack Notification
-      if: ${{ failure() }}
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: merge-develop-test
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_LINK_NAMES: true
-        SLACK_MESSAGE: 'Action failed when merging `develop` into `feature/develop_club_integrations` :alert:. <@U01R5DNGLS1>, please check if the base exists or there are conflicts that need to be resolved manually. Find the action logs at <https://github.com/elenamaria03/test-github-action/actions/workflows/test.yml | Action logs> '
-        SLACK_ICON: https://github.com/golfgenius/golfgenius/blob/master/app/assets/images/home/logos/ggs.png
-        SLACK_TITLE: Message
-        SLACK_USERNAME: Golf Genius
-      
-#   merge_develop_club:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_usga_associations:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_golf_canada:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_gg_associations:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_international:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_pga_pro:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_usability:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#   merge_develop_internal:
-#     runs-on: ubuntu-latest
-#     steps:
+#     - name: Sends a Slack Notification
+#       if: ${{ failure() }}
+#       uses: rtCamp/action-slack-notify@v2
+#       env:
+#         SLACK_CHANNEL: merge-develop-test
+#         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#         SLACK_LINK_NAMES: true
+#         SLACK_MESSAGE: 'Disregard this message. This is a test!'
