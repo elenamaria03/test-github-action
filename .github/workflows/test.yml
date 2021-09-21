@@ -2,32 +2,29 @@ name: Merge develop into components
 on: 
   workflow_dispatch:
 
-jobs:
-  hello_world_job:
+jobs:    
+  test_branch_exists:
+    name: Test branch exist
     runs-on: ubuntu-latest
-    name: A job to say hello
     steps:
-      - uses: actions/checkout@v2
-      - id: foo
-        uses: elenamaria03/merge-branch-action@v1
+    - name: Test if branch exists
+      uses: actions/checkout@v2
+      with:
+        ref: branch2
+  test_branch_merge:
+    needs: test_branch_exists
+    name: Test branch merge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: elenamaria03/merge-branch-action@v2
         with:
-          who-to-greet: 'Outis'
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
-        shell: bash
-    
-#   test_branch_exists:
-#     name: Test branch exist
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Test if branch exists
-#       uses: actions/checkout@v2
-#       with:
-#         ref: branch2
-#   test_branch_merge:
-#     needs: test_branch_exists
-#     name: Test branch merge
-#     runs-on: ubuntu-latest
-#     steps:
+          git-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          source-branch: 'branch1'
+          target-branch: 'branch2'
+          slack-link: ${{ secrets.SLACK_WEBHOOK }}
+          slack-channel: merge-develop-bot
+          
 #     - name: Merge branch1 -> branch2
 #       uses: everlytic/branch-merge@1.1.2
 #       with:
