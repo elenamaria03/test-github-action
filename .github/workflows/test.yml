@@ -32,7 +32,7 @@ jobs:
       if: ${{ failure() }}
       uses: rtCamp/action-slack-notify@v2
       env:
-        SLACK_CHANNEL: merge-develop-test
+        SLACK_CHANNEL: merge-develop-bot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_LINK_NAMES: true
         SLACK_MESSAGE: 'Disregard this message. This is a test!'
