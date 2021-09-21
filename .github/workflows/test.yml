@@ -16,7 +16,7 @@ jobs:
     name: Test branch merge
     runs-on: ubuntu-latest
     steps:
-      - uses: elenamaria03/merge-branch-action@v4
+      - uses: elenamaria03/merge-branch-action@v5
         with:
           git-token: ${{ github.token }}
           repository: ${{ github.repository }}
